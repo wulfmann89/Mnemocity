@@ -1,0 +1,33 @@
+# Gradle
+.gradle/
+build/
+
+# Local configuration
+local.properties
+
+# Android Studio
+.idea/
+*.iml
+
+# Log and crash reports
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keystore and secrets
+*.jks
+*.keystore
+
+# Kotlin/Jetpack Compose
+*.class
+*.kotlin_module
+
+# Test outputs
+/test-output/
+/reports/
+
+# Misc
+*.apk
+*.ap_*
