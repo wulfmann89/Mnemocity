@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.wulfmann.mnemocity.core.intake.IntakeModule
+import com.wulfmann.mnemocity.core.savestate.model.SaveState
 import com.wulfmann.mnemocity.data.AnalyticsService
 import com.wulfmann.mnemocity.data.UserRepository
 import com.wulfmann.mnemocity.navigation.AppRoutes
 import com.wulfmann.mnemocity.profile.UserProfileManager
 import com.wulfmann.mnemocity.security.SecureImplementRepository
+import com.wulfmann.mnemocity.ui.identity.UserIdentity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -43,6 +45,13 @@ class IntakeFlowViewModel(
         secureRepo.saveSecure("identity", identity)
     }
 
+    fun updateUserIdentity(state: SaveState) {
+        // Save to repo or local state
+    }
+
+    fun finalizeUserIdentity() {
+        // Trigger any finalization logic or navigation
+    }
     suspend fun getNextRoute(
         secureRepo: SecureImplementRepository,
         userProfileManager: UserProfileManager

@@ -35,9 +35,9 @@ import com.wulfmann.mnemocity.ui.calendar.ScheduleDayScreen
 import com.wulfmann.mnemocity.ui.identity.identityflow.AccountCreationFlowScreen
 import com.wulfmann.mnemocity.ui.identity.identityflow.SplashScreen
 import com.wulfmann.mnemocity.ui.identity.identityflow.StartupChoiceScreen
+import com.wulfmann.mnemocity.ui.identity.identityflow.toState
 import com.wulfmann.mnemocity.ui.identity.intakescreens.IntakeFlowViewModel
 import com.wulfmann.mnemocity.ui.identity.intakescreens.IntakeFlowViewModelFactory
-import com.wulfmann.mnemocity.ui.identity.toState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -74,11 +74,7 @@ fun AppNavHost(
         }
 
         composable(AppRoutes.SPLASH) {
-            SplashScreen(onReady = { hasBaseline ->
-                val next = if (hasBaseline) AppRoutes.HOME else AppRoutes.ARCHETYPE_INTAKE_SCREEN
-                navController.navigate(next)
-            }
-            )
+            SplashScreen(navController =  navController)
             Log.d("NavDebug", "Splash registered")
         }
 
