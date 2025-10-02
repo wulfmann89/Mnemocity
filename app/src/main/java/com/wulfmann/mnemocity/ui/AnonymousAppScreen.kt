@@ -15,10 +15,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.wulfmann.mnemocity.core.intake.IntakeModule
-import com.wulfmann.mnemocity.security.SecureImplementRepository
 import com.wulfmann.mnemocity.data.UserRepository
-
+import com.wulfmann.mnemocity.security.SecureImplementRepository
+import com.wulfmann.mnemocity.ui.identity.UserIdentity
 import java.util.UUID
 
 @Composable
@@ -43,11 +42,12 @@ fun AnonymousAppScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(onClick = {
-            val anonymousIdentity = IntakeModule.UserIdentity(
+            val anonymousIdentity = UserIdentity(
+                id = "Guest",
                 preferredName = "Guest",
-                pronouns = null,
+                pronouns = "Not specified",
                 currentFocus = "Exploring",
-                neuroType = null
+                neuroType = "Unknown"
             )
             userRepository.saveUserIdentity(anonymousIdentity)
 

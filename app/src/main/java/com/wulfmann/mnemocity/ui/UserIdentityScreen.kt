@@ -9,13 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import com.wulfmann.mnemocity.core.intake.IntakeModule
+import com.wulfmann.mnemocity.ui.identity.UserIdentity
+import java.util.UUID
 
 
 @Composable
 fun UserIdentityScreen(
     onContinueAsGuest: () -> Unit,
-    onCreateAccount: (IntakeModule.UserIdentity) -> Unit,
+    onCreateAccount: (UserIdentity) -> Unit,
     onLogin: () -> Unit
 ) {
     var preferredName by remember { mutableStateOf("") }
@@ -61,11 +62,12 @@ fun UserIdentityScreen(
             if (preferredName.isBlank()) {
                 showError = true
             } else {
-                val identity = IntakeModule.UserIdentity(
+                val identity = UserIdentity(
+                    id = UUID.randomUUID().toString(),
                     preferredName = preferredName,
-                    pronouns = pronouns.ifBlank { null },
+                    pronouns = pronouns.ifBlank { "Prefer not to say" },
                     currentFocus = "Launching a project",
-                    neuroType = null
+                    neuroType = "unknown"
                 )
                 onCreateAccount(identity)
             }
