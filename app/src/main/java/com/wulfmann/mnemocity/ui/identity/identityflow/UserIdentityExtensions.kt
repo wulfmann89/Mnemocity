@@ -9,9 +9,10 @@ fun UserIdentity.toState(): SaveState {
         timestamp = System.currentTimeMillis(),
         payload = mapOf(
             "preferredName" to this.preferredName,
-            "pronouns" to this.pronouns,
+            "pronouns" to (this.pronouns),
             "currentFocus" to this.currentFocus,
-            "neuroType" to this.neuroType
+            "neuroType" to (this.neuroType),
+            "email" to (this.email ?: "none")
         )
     )
 }

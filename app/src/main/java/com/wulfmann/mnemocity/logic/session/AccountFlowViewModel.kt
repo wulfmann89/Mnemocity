@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.wulfmann.mnemocity.core.intake.IntakeModule
-import com.wulfmann.mnemocity.security.SecureImplementRepository
 import com.wulfmann.mnemocity.data.UserRepository
+import com.wulfmann.mnemocity.security.SecureImplementRepository
 import com.wulfmann.mnemocity.session.AccountFlowManager
+import com.wulfmann.mnemocity.ui.identity.UserIdentity
 import kotlinx.coroutines.launch
 
 fun provideAccountFlowViewModelFactory(appContext: Context): ViewModelProvider.Factory {
@@ -25,11 +25,13 @@ class AccountFlowViewModel(
 ) : ViewModel() {
 
     fun createAccount(preferredName: String, email: String?) {
-        val identity = IntakeModule.UserIdentity(
+        val identity = UserIdentity(
+            id = "",
             preferredName = preferredName,
-            email = email ?: "",
             neuroType = "Undefined",
-            currentFocus = "Getting Started"
+            currentFocus = "Getting Started",
+            pronouns = "",
+            email = email
         )
 
         viewModelScope.launch {

@@ -5,6 +5,6 @@ data class UserIdentity(
     val preferredName: String,
     val pronouns: String,
     val currentFocus: String,
-    val neuroType: String
-
+    val neuroType: String,
+    val email: String? = null
 )

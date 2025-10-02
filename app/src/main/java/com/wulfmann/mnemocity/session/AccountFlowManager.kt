@@ -2,12 +2,12 @@ package com.wulfmann.mnemocity.session
 
 import android.content.Context
 import android.util.Log
-import com.wulfmann.mnemocity.core.intake.IntakeModule
 import com.wulfmann.mnemocity.logic.session.AuthMethod
 import com.wulfmann.mnemocity.logic.session.IdentityPhase
 import com.wulfmann.mnemocity.logic.session.SessionOrigin
 import com.wulfmann.mnemocity.logic.session.UserSession
 import com.wulfmann.mnemocity.security.SecureImplementRepository
+import com.wulfmann.mnemocity.ui.identity.UserIdentity
 
 class AccountFlowManager(private val context: Context) {
 
@@ -39,7 +39,7 @@ class AccountFlowManager(private val context: Context) {
         return "token_${email.hashCode()}_${System.currentTimeMillis()}"
     }
 
-    fun registerIdentity(identity: IntakeModule.UserIdentity) {
+    fun registerIdentity(identity: UserIdentity) {
         secureRepo.saveUserIdentity(identity)
         val token = generateToken(identity.email)
         secureRepo.saveSecure("token", token)
